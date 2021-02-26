@@ -22,3 +22,14 @@ export const makeSecret = async ({ pemKey, scope, namespace, name, value }) => {
   const result = await HybridEncrypt(publicKey, value, label);
   return Buffer.from(result).toString("base64");
 };
+
+export const isValidKey = (key) => {
+  let isValid = false;
+  try {
+    pki.certificateFromPem(key);
+    isValid = true;
+  } catch (e) {
+    console.log("e", e);
+  }
+  return isValid;
+};

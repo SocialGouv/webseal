@@ -3,6 +3,8 @@ import React from "react";
 import { Row, Col, Form as BsForm, Button } from "react-bootstrap";
 import { useForm, Controller } from "react-hook-form";
 
+import { isValidKey } from "./makeSecret";
+
 const RadioChoice = React.forwardRef(({ name, value, ...props }, ref) => (
   <BsForm.Check
     inline
@@ -20,6 +22,8 @@ const certificatePlaceholder = `-----BEGIN CERTIFICATE-----
 ...
 -----END CERTIFICATE-----`;
 
+const certificateSample = ``;
+
 export const Form = ({ onSubmit }) => {
   const {
     register,
@@ -29,9 +33,9 @@ export const Form = ({ onSubmit }) => {
     setValue,
     trigger,
   } = useForm({
-    mode: "onChange",
+    mode: "all",
     defaultValues: {
-      pemKey: "",
+      pemKey: certificateSample,
       value: "",
       namespace: "",
       name: "",
@@ -39,36 +43,46 @@ export const Form = ({ onSubmit }) => {
     },
   });
   const _onSubmit = (data) => {
-    console.log("onSubmit", data);
+    //console.log("onSubmit", data);
     onSubmit(data);
   };
   const scope = getValues("scope");
-  //console.log("scope", scope);
+  const pemKey = getValues("pemKey");
+  const validKey = formState.isDirty
+    ? isValidKey(pemKey)
+    : isValidKey(certificateSample);
   return (
     <BsForm onSubmit={handleSubmit(_onSubmit)}>
       <Row>
         <Col>
-          <BsForm.Label>Server public certificate (PEM key) :</BsForm.Label>
+          <BsForm.Label>
+            Server public certificate (PEM key) :{" "}
+            {(!validKey && "❌ Provided key is invalid") || ""}
+          </BsForm.Label>
           <BsForm.Group>
             <BsForm.Control
               as="textarea"
               name="pemKey"
-              defaultValue={certificatePlaceholder}
               style={{
                 marginTop: 10,
                 fontSize: "0.8rem",
                 fontFamily: "Courier",
               }}
               rows={8}
+              onChange={(e) => {
+                setValue("pemKey", e.target.value);
+                trigger();
+              }}
               ref={register({ required: true })}
               placeholder={certificatePlaceholder}
+              defaultValue={certificateSample}
             />
           </BsForm.Group>
         </Col>
       </Row>
       <Row>
         <Col xs={12} sm={3}>
-          <BsForm.Label>Scope</BsForm.Label>
+          <BsForm.Label>Scope :</BsForm.Label>
         </Col>
         <Col sm={9}>
           <RadioChoice
@@ -102,7 +116,7 @@ export const Form = ({ onSubmit }) => {
       </Row>
       {(scope === "namespace" || scope === "strict") && (
         <BsForm.Group as={Row}>
-          <BsForm.Label column>Namespace</BsForm.Label>
+          <BsForm.Label column>Namespace :</BsForm.Label>
           <Col sm="9">
             <BsForm.Control
               name="namespace"
@@ -116,7 +130,7 @@ export const Form = ({ onSubmit }) => {
       )}
       {scope === "strict" && (
         <BsForm.Group as={Row}>
-          <BsForm.Label column>Secret name</BsForm.Label>
+          <BsForm.Label column>Secret name :</BsForm.Label>
           <Col sm="9">
             <BsForm.Control
               name="name"
@@ -131,6 +145,10 @@ export const Form = ({ onSubmit }) => {
         <BsForm.Control
           as="textarea"
           name="value"
+          onChange={(e) => {
+            setValue("value", e.target.value);
+            trigger();
+          }}
           style={{ marginTop: 10 }}
           rows={4}
           ref={register({ required: true })}

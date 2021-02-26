@@ -19,6 +19,8 @@ const Editor = () => {
   const [yaml, setYaml] = useState(null);
   const onSubmit = (data) => {
     console.log("onSubmit2", data);
+    setEncrypted("");
+    setYaml("");
     makeSecret(data)
       .then((value) => {
         setEncrypted(value);
