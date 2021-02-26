@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Card, Jumbotron, Container, Row, Col } from "react-bootstrap";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { Clipboard } from "react-feather";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -13,6 +15,45 @@ const Intro = () => (
     <p>Client-side sealed-secrets generation</p>
   </Jumbotron>
 );
+
+const CodeArea = (props) => (
+  <textarea
+    {...props}
+    style={{
+      fontSize: "0.8rem",
+      fontFamily: "Courier",
+      border: "1px solid #ccc",
+      width: "100%",
+      padding: 5,
+      height: 400,
+      ...(props.style || {}),
+    }}
+  ></textarea>
+);
+
+const Copier = ({ text }) => {
+  const [copied, setCopied] = useState(false);
+  return (
+    <CopyToClipboard
+      text={text}
+      onCopy={() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      }}
+    >
+      <Clipboard
+        style={{
+          marginLeft: 10,
+          cursor: "pointer",
+          transition: "all 0.2s ease-in",
+        }}
+        color={copied ? "green" : "black"}
+        title="Copy"
+        size={16}
+      />
+    </CopyToClipboard>
+  );
+};
 
 const Editor = () => {
   const [encrypted, setEncrypted] = useState(null);
@@ -51,24 +92,19 @@ const Editor = () => {
             <>
               <Card style={{ marginTop: 10 }}>
                 <Card.Body>
-                  <Card.Title>Encrypted</Card.Title>
-                  <div>{encrypted}</div>
+                  <Card.Title>
+                    Encrypted
+                    <Copier text={encrypted} />
+                  </Card.Title>
+                  <CodeArea defaultValue={encrypted} style={{ height: 200 }} />
                 </Card.Body>
               </Card>
               <Card style={{ marginTop: 10 }}>
                 <Card.Body>
-                  <Card.Title>SealedSecret</Card.Title>
-                  <textarea
-                    style={{
-                      whiteSpace: "pre",
-                      fontSize: "0.8rem",
-                      fontFamily: "Courier",
-                      width: "100%",
-                      padding: 5,
-                      height: 400,
-                    }}
-                    defaultValue={yaml}
-                  ></textarea>
+                  <Card.Title>
+                    SealedSecret <Copier text={yaml} />
+                  </Card.Title>
+                  <CodeArea defaultValue={yaml} />
                 </Card.Body>
               </Card>
             </>
