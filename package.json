@@ -2,7 +2,11 @@
   "name": "@socialgouv/webseal",
   "version": "1.0.0",
   "description": "Sealed secrets generator static web UI",
-  "keywords": [],
+  "homepage": "https://socialgouv.github.io/webseal",
+  "keywords": [
+    "kubeseal",
+    "sealed-secrets"
+  ],
   "main": "src/index.js",
   "dependencies": {
     "@socialgouv/aes-gcm-rsa-oaep": "1.0.2",
