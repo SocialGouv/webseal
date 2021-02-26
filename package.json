@@ -1,6 +1,7 @@
 {
   "name": "@socialgouv/webseal",
   "version": "1.0.0",
+  "private": true,
   "description": "Sealed secrets generator static web UI",
   "homepage": "https://socialgouv.github.io/webseal",
   "keywords": [
