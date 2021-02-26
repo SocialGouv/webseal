@@ -1,0 +1,27 @@
+name: webseal
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "15"
+      - name: Build
+        run: |
+          yarn
+          yarn build
+
+      - name: GH Pages deploy
+        uses: Cecilapp/GitHub-Pages-deploy@3.1.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          email: ${{ secrets.SOCIALGROOVYBOT_EMAIL }}
+          build_dir: build
+          branch: gh-pages

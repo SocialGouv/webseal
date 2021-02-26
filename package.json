@@ -1,0 +1,32 @@
+{
+  "name": "@socialgouv/webseal",
+  "version": "1.0.0",
+  "description": "Sealed secrets generator static web UI",
+  "keywords": [],
+  "main": "src/index.js",
+  "dependencies": {
+    "@socialgouv/aes-gcm-rsa-oaep": "1.0.2",
+    "bootstrap": "4.6.0",
+    "react": "17.0.1",
+    "react-bootstrap": "1.4.3",
+    "react-dom": "17.0.1",
+    "react-github-fork-ribbon": "^0.6.0",
+    "react-hook-form": "6.15.1",
+    "react-scripts": "4.0.0"
+  },
+  "devDependencies": {
+    "typescript": "4.1.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
