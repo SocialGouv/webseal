@@ -3,23 +3,11 @@ import { Card, Jumbotron, Container, Row, Col } from "react-bootstrap";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Clipboard } from "react-feather";
 import yaml from "js-yaml";
-import { pki } from "node-forge";
 import { encryptValue, getSealedSecret } from "@socialgouv/aes-gcm-rsa-oaep";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import { Form } from "./Form";
-
-const isValidKey = (key) => {
-  let isValid = false;
-  try {
-    pki.certificateFromPem(key);
-    isValid = true;
-  } catch (e) {
-    console.log("e", e);
-  }
-  return isValid;
-};
 
 const Intro = () => (
   <Jumbotron style={{ padding: "2rem 1rem" }}>
