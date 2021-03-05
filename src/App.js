@@ -2,12 +2,24 @@ import React, { useState } from "react";
 import { Card, Jumbotron, Container, Row, Col } from "react-bootstrap";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Clipboard } from "react-feather";
+import yaml from "js-yaml";
+import { pki } from "node-forge";
+import { encryptValue, getSealedSecret } from "@socialgouv/aes-gcm-rsa-oaep";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import { Form } from "./Form";
-import { makeSecret } from "./makeSecret";
-import { makeYaml } from "./makeYaml";
+
+const isValidKey = (key) => {
+  let isValid = false;
+  try {
+    pki.certificateFromPem(key);
+    isValid = true;
+  } catch (e) {
+    console.log("e", e);
+  }
+  return isValid;
+};
 
 const Intro = () => (
   <Jumbotron style={{ padding: "2rem 1rem" }}>
@@ -57,24 +69,27 @@ const Copier = ({ text }) => {
 
 const Editor = () => {
   const [encrypted, setEncrypted] = useState(null);
-  const [yaml, setYaml] = useState(null);
+  const [yamlResult, setYamlResult] = useState(null);
   const onSubmit = (data) => {
     console.log("onSubmit2", data);
     setEncrypted("");
-    setYaml("");
-    makeSecret(data)
-      .then((value) => {
+    setYamlResult("");
+    encryptValue(data)
+      .then(async (value) => {
         setEncrypted(value);
-        const newYaml = makeYaml({
+        const sealedSecret = await getSealedSecret({
+          pemKey: data.pemKey,
           namespace: data.namespace,
           name: data.name,
           scope: data.scope,
-          encryptedData: {
+          values: {
             VALUE: value,
           },
         });
 
-        setYaml(newYaml);
+        const newYaml = yaml.dump(sealedSecret);
+
+        setYamlResult(newYaml);
       })
       .catch(console.log);
   };
@@ -102,9 +117,9 @@ const Editor = () => {
               <Card style={{ marginTop: 10 }}>
                 <Card.Body>
                   <Card.Title>
-                    SealedSecret <Copier text={yaml} />
+                    SealedSecret <Copier text={yamlResult} />
                   </Card.Title>
-                  <CodeArea defaultValue={yaml} />
+                  <CodeArea defaultValue={yamlResult} />
                 </Card.Body>
               </Card>
             </>

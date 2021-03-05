@@ -1510,12 +1510,14 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@socialgouv/aes-gcm-rsa-oaep@1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@socialgouv/aes-gcm-rsa-oaep/-/aes-gcm-rsa-oaep-1.0.2.tgz#936c8f33fc2342934f36e8229899bc7156510461"
-  integrity sha512-v6v5kGjijS9Z477fMObkvXn8pN3xveeoQ7Pz0/2gHkK27HFlz+c7D8Q7U1Lk3AadVyR3uClWkSxXbMLTLLZrsw==
+"@socialgouv/aes-gcm-rsa-oaep@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@socialgouv/aes-gcm-rsa-oaep/-/aes-gcm-rsa-oaep-1.1.0.tgz#4f1ff0134add5a4bff6c399585fc5db1b0f07751"
+  integrity sha512-TawJTd2fvE6qB+/ewCxqP9Cm5JGIMWFUzNDoudkWQ0S2FtcjjqIl9202gHph5KA3VBNJOqqWeoY5pPg7vTqt8w==
   dependencies:
+    "@types/node-forge" "^0.9.7"
     hybrid-crypto-js "^0.2.4"
+    node-forge "^0.10.0"
 
 "@surma/rollup-plugin-off-main-thread@^1.1.1":
   version "1.4.2"
@@ -1747,6 +1749,13 @@
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
+
+"@types/node-forge@^0.9.7":
+  version "0.9.7"
+  resolved "https://registry.yarnpkg.com/@types/node-forge/-/node-forge-0.9.7.tgz#948f7b52d352a6c4ab22d3328c206f0870672db5"
+  integrity sha512-AX7Mqk5ztzSvxqsA/q8y0k0/znJpW6QAqnoLQMEi7A3tio+laRmC/8Q3gbATHT4kZnvhnDmGAy1CpWFzlzCfeA==
+  dependencies:
+    "@types/node" "*"
 
 "@types/node@*":
   version "14.14.31"
@@ -2297,6 +2306,11 @@ argparse@^1.0.7:
   integrity sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg==
   dependencies:
     sprintf-js "~1.0.2"
+
+argparse@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/argparse/-/argparse-2.0.1.tgz#246f50f3ca78a3240f6c997e8a9bd1eac49e4b38"
+  integrity sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==
 
 aria-query@^4.2.2:
   version "4.2.2"
@@ -6631,6 +6645,13 @@ js-yaml@^3.13.1:
   dependencies:
     argparse "^1.0.7"
     esprima "^4.0.0"
+
+js-yaml@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-4.0.0.tgz#f426bc0ff4b4051926cd588c71113183409a121f"
+  integrity sha512-pqon0s+4ScYUvX30wxQi3PogGFAlUyH0awepWvwkj4jD4v+ova3RiYw8bmA6x2rDrEaj8i/oWKoRxpVNW+Re8Q==
+  dependencies:
+    argparse "^2.0.1"
 
 jsbn@~0.1.0:
   version "0.1.1"
