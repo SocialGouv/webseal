@@ -1,9 +1,19 @@
 import React from "react";
+import { pki } from "node-forge";
 
 import { Row, Col, Form as BsForm, Button } from "react-bootstrap";
 import { useForm, Controller } from "react-hook-form";
 
-import { isValidKey } from "./makeSecret";
+const isValidKey = (key) => {
+  let isValid = false;
+  try {
+    pki.certificateFromPem(key);
+    isValid = true;
+  } catch (e) {
+    console.log("e", e);
+  }
+  return isValid;
+};
 
 const RadioChoice = React.forwardRef(({ name, value, ...props }, ref) => (
   <BsForm.Check
