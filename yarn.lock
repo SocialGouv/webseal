@@ -1510,10 +1510,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@socialgouv/aes-gcm-rsa-oaep@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@socialgouv/aes-gcm-rsa-oaep/-/aes-gcm-rsa-oaep-1.1.0.tgz#4f1ff0134add5a4bff6c399585fc5db1b0f07751"
-  integrity sha512-TawJTd2fvE6qB+/ewCxqP9Cm5JGIMWFUzNDoudkWQ0S2FtcjjqIl9202gHph5KA3VBNJOqqWeoY5pPg7vTqt8w==
+"@socialgouv/aes-gcm-rsa-oaep@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@socialgouv/aes-gcm-rsa-oaep/-/aes-gcm-rsa-oaep-1.1.1.tgz#8daa6febbe5b76c850b85ac1e7a1cb7db55b66ea"
+  integrity sha512-t33TqVafTLL8UhHlf8InlQHLkg+EEbwN0ha16SS1Gr3n8a6oRD/pQ/OFtA0vd5ntPeXDEgnJk5D+MoalNGq2sw==
   dependencies:
     "@types/node-forge" "^0.9.7"
     hybrid-crypto-js "^0.2.4"
