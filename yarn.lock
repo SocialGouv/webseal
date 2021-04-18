@@ -9080,10 +9080,10 @@ react-github-fork-ribbon@^0.6.0:
   resolved "https://registry.yarnpkg.com/react-github-fork-ribbon/-/react-github-fork-ribbon-0.6.0.tgz#8b7454fec5bd5481af7fdf6d0fc8aa7653373301"
   integrity sha512-lmobEGwg1k/JGMJMbiWNh3dd+5HUtePVqUu1LPr5L65MiK6mnn7ZgkGpFYXLijPxO9hD7x+f9qUrEzeazQdx2g==
 
-react-hook-form@6.15.5:
-  version "6.15.5"
-  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-6.15.5.tgz#c2578f9ce6a6df7b33015587d40cd880dc13e2db"
-  integrity sha512-so2jEPYKdVk1olMo+HQ9D9n1hVzaPPFO4wsjgSeZ964R7q7CHsYRbVF0PGBi83FcycA5482WHflasdwLIUVENg==
+react-hook-form@6.15.6:
+  version "6.15.6"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-6.15.6.tgz#5d4985ffd3758dee97912e370595e49a6fcd24ab"
+  integrity sha512-WIrOAoWw+ftMC13tJd5VL/vyNV6EkPKOUY/TwUHBinym/45k3gmC67an2rETvdDXxwXfCIaD+kPyMwjXBnCjBw==
 
 react-is@^16.3.2, react-is@^16.8.1:
   version "16.13.1"
