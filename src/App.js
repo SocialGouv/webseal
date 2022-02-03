@@ -145,6 +145,8 @@ const Editor = () => {
                 </Card.Body>
               </Card>
               <Protip />
+              <br/>
+              <br/>
             </>
           )}
         </Col>
