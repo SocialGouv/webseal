@@ -7,10 +7,14 @@ import { encryptValue, getSealedSecret } from "@socialgouv/aes-gcm-rsa-oaep";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import { isValidKey } from "./isValidKey";
 import { Form } from "./Form";
+import { Protip } from "./Protip";
 
 const Intro = () => (
-  <Jumbotron style={{ padding: "2rem 1rem" }}>
+  <Jumbotron
+    style={{ marginTop: "1rem", marginBottom: "1rem", padding: "1rem 1rem" }}
+  >
     <h1>WebSeal</h1>
     <p>Client-side sealed-secrets generation</p>
   </Jumbotron>
@@ -56,52 +60,82 @@ const Copier = ({ text }) => {
 };
 
 const Editor = () => {
+  const [formData, setFormData] = useState({
+    cluster: "dev",
+    namespace: "",
+    name: "",
+    pemKey: "",
+  });
   const [encrypted, setEncrypted] = useState(null);
   const [yamlResult, setYamlResult] = useState(null);
-  const onSubmit = (data) => {
-    console.log("onSubmit2", data);
+  const onSubmit = async (data) => {
+    //console.log("onSubmit2", data);
+    const validKey = isValidKey(data.pemKey);
+    setFormData(data);
     setEncrypted("");
     setYamlResult("");
-    encryptValue(data)
-      .then(async (value) => {
-        setEncrypted(value);
-        const sealedSecret = await getSealedSecret({
-          pemKey: data.pemKey,
-          namespace: data.namespace,
-          name: data.name,
-          scope: data.scope,
-          values: {
-            VALUE: data.value,
-          },
+    if (!validKey) {
+      return;
+    }
+    if (data.value && data.value !== formData.value) {
+      const pemKey = data.pemKey;
+      const values = {};
+      if (data.value.match(/^([\w_\d]+)=(.+)$/im)) {
+        data.value.split("\n").forEach((row) => {
+          const matches = row.match(/^([\w_\d]+)=(.*)$/i);
+          if (matches) {
+            values[matches[1]] = matches[2];
+          }
         });
-
-        const newYaml = yaml.dump(sealedSecret);
-
-        setYamlResult(newYaml);
-      })
-      .catch(console.log);
+      } else {
+        values.VALUE = data.value;
+      }
+      let sealedSecret;
+      try {
+        sealedSecret = await getSealedSecret({
+          pemKey,
+          namespace: data.namespace || "some-namespace",
+          name: data.name || "some-secret-name",
+          scope: data.scope,
+          values,
+        });
+      } catch (e) {
+        console.log("cannot create sealed secret", e.message);
+        return;
+      }
+      if (data.scope === "strict" && (!data.namespace || !data.name)) {
+        console.log("namespace and name are mandatory");
+        setYamlResult("");
+        setEncrypted("");
+      } else if (data.scope === "namespace" && !data.namespace) {
+        console.log("namespace is mandatory");
+        setYamlResult("");
+        setEncrypted("");
+      } else if (!data.value) {
+        console.log("value is mandatory");
+        setYamlResult("");
+        setEncrypted("");
+      } else {
+        const keys = Object.keys(values);
+        if (keys.length === 1) {
+          setEncrypted(sealedSecret.spec.encryptedData[keys[0]]);
+        } else {
+          setEncrypted(
+            "Not available for multiple values, use the below secret"
+          );
+        }
+        setYamlResult(yaml.dump(sealedSecret, { noRefs: true, lineWidth: -1 }));
+      }
+    }
   };
   return (
     <Container>
       <Intro />
       <Row>
         <Col xs={12}>
-          <Card>
-            <Card.Body>
-              <Form onSubmit={onSubmit} />
-            </Card.Body>
-          </Card>
+          <Form onSubmit={onSubmit} initialFormData={formData} />
           {encrypted && (
             <>
-              <Card style={{ marginTop: 10 }}>
-                <Card.Body>
-                  <Card.Title>
-                    Encrypted
-                    <Copier text={encrypted} />
-                  </Card.Title>
-                  <CodeArea defaultValue={encrypted} style={{ height: 200 }} />
-                </Card.Body>
-              </Card>
               <Card style={{ marginTop: 10 }}>
                 <Card.Body>
                   <Card.Title>
@@ -110,6 +144,7 @@ const Editor = () => {
                   <CodeArea defaultValue={yamlResult} />
                 </Card.Body>
               </Card>
+              <Protip />
             </>
           )}
         </Col>
