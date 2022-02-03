@@ -18,6 +18,10 @@ const tips = [
     description:
       "Once unencrypted in the destination namespace, your sealed-secret creates a standard kubernetes Secret.",
   },
+  {
+    title: "👨‍⚕️ kubectl get events --field-selector involvedObject.kind=\"SealedSecret\"",
+    description: "If decryption fails, kubectl events will tell you"
+  }
 ];
 
 export const Protip = () => {
