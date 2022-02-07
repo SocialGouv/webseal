@@ -4,16 +4,16 @@
     "main.js.map": "/webseal/static/js/main.b5325629.chunk.js.map",
     "runtime-main.js": "/webseal/static/js/runtime-main.601de289.js",
     "runtime-main.js.map": "/webseal/static/js/runtime-main.601de289.js.map",
-    "static/css/2.7dbf001f.chunk.css": "/webseal/static/css/2.7dbf001f.chunk.css",
+    "static/css/2.601178fc.chunk.css": "/webseal/static/css/2.601178fc.chunk.css",
     "static/js/2.0fd0bc86.chunk.js": "/webseal/static/js/2.0fd0bc86.chunk.js",
     "static/js/2.0fd0bc86.chunk.js.map": "/webseal/static/js/2.0fd0bc86.chunk.js.map",
     "index.html": "/webseal/index.html",
-    "static/css/2.7dbf001f.chunk.css.map": "/webseal/static/css/2.7dbf001f.chunk.css.map",
+    "static/css/2.601178fc.chunk.css.map": "/webseal/static/css/2.601178fc.chunk.css.map",
     "static/js/2.0fd0bc86.chunk.js.LICENSE.txt": "/webseal/static/js/2.0fd0bc86.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.601de289.js",
-    "static/css/2.7dbf001f.chunk.css",
+    "static/css/2.601178fc.chunk.css",
     "static/js/2.0fd0bc86.chunk.js",
     "static/js/main.b5325629.chunk.js"
   ]
