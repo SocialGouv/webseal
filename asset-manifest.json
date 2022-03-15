@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/webseal/static/js/main.b5325629.chunk.js",
-    "main.js.map": "/webseal/static/js/main.b5325629.chunk.js.map",
+    "main.js": "/webseal/static/js/main.6a771009.chunk.js",
+    "main.js.map": "/webseal/static/js/main.6a771009.chunk.js.map",
     "runtime-main.js": "/webseal/static/js/runtime-main.601de289.js",
     "runtime-main.js.map": "/webseal/static/js/runtime-main.601de289.js.map",
     "static/css/2.601178fc.chunk.css": "/webseal/static/css/2.601178fc.chunk.css",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.601de289.js",
     "static/css/2.601178fc.chunk.css",
     "static/js/2.0fd0bc86.chunk.js",
-    "static/js/main.b5325629.chunk.js"
+    "static/js/main.6a771009.chunk.js"
   ]
 }
