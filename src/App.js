@@ -80,9 +80,9 @@ const Editor = () => {
     if (data.value && data.value !== formData.value) {
       const pemKey = data.pemKey;
       const values = {};
-      if (data.value.match(/^([\w_\d]+)=(.+)$/im)) {
+      if (data.value.match(/^([\w_-\d]+)=(.+)$/im)) {
         data.value.split("\n").forEach((row) => {
-          const matches = row.match(/^([\w_\d]+)=(.*)$/i);
+          const matches = row.match(/^([\w_-\d]+)=(.*)$/i);
           if (matches) {
             values[matches[1]] = matches[2];
           }
