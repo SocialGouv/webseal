@@ -64,7 +64,7 @@ const Editor = () => {
     cluster: "dev",
     namespace: "",
     name: "",
-    pemKey: "",
+    pemKey: window.CONFIG.pemKey ? window.CONFIG.pemKey : "",
   });
   const [encrypted, setEncrypted] = useState(null);
   const [yamlResult, setYamlResult] = useState(null);
