@@ -11,7 +11,7 @@
   "main": "src/index.js",
   "dependencies": {
     "@socialgouv/aes-gcm-rsa-oaep": "^1.1.4",
-    "bootstrap": "4.6.2",
+    "bootstrap": "5.3.3",
     "js-yaml": "^4.1.0",
     "npm-check-updates": "^16.9.0",
     "react": "17.0.2",
