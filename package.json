@@ -24,7 +24,7 @@
     "react-scripts": "4.0.3"
   },
   "devDependencies": {
-    "typescript": "4.9.5"
+    "typescript": "5.4.3"
   },
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
